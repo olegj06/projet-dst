@@ -8,4 +8,4 @@ env    WORDPRESS_DB_USER=wp_user
 env    WORDPRESS_DB_PASSWORD=wp_password
 
 
-COPY wp-config.php  /var/www/html/
+COPY Docker/wordpress/wp-config.php  /var/www/html/
