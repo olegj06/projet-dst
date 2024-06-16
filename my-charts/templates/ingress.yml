@@ -5,8 +5,8 @@ metadata:
   namespace: {{.Values.namespaces}}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    {{- if .Values.ingress.annotations }}
-    {{ toYaml .Values.ingress.annotations | indent 4 }}
+    {{- if .Values.ingress_annotations }}
+    {{ toYaml .Values.ingress_annotations | indent 4 }}
     {{- end }}
 spec:
   ingressClassName: {{.Values.ingressClassName}}
@@ -21,9 +21,9 @@ spec:
             name: wordpress-service
             port:
               number: 80
- {{- if .Values.ingress.tls }}
+ {{- if .Values.ingress_tls }}
   tls:
     - hosts:
-        - {{ .Values.ingress.host }}
-      secretName: {{ .Values.ingress.tls.secretName }}
+        - {{ .Values.ingress_host }}
+      secretName: {{ .Values.ingress_tls_secretName }}
   {{- end }}
