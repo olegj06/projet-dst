@@ -1,6 +1,6 @@
 #ingress
 namespace: staging
-ingress.host: 127.0.0.1
+ingress.host: localhost
 ingressClassName: nginx.ingress.kubernetes.io
 
 #mariadb

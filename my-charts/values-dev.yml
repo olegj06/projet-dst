@@ -1,6 +1,6 @@
 #ingress
 namespace: dev
-ingress_host: 127.0.0.1
+ingress_host: localhost
 ingressClassName: nginx.ingress.kubernetes.io
 
 #mariadb
