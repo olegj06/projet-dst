@@ -9,7 +9,7 @@ spec:
   resources:
     requests:
       storage: 5Gi
-  storageClassName: {{.Values.mariadb.pvc1.storageClassName}}
+  storageClassName: {{.Values.mariadb_pvc1_storageClassName}}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -22,4 +22,4 @@ spec:
   resources:
     requests:
       storage: 5Gi
-  storageClassName: {{.Values.mariadb.pvc2.storageClassName}}
+  storageClassName: {{.Values.mariadb_pvc2_storageClassName}}
