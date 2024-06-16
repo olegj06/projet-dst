@@ -66,7 +66,7 @@ stages {
         }
 
 }
-    stage('Deploy to Dev') {
+        stage('Deploy to Dev') {
             environment {
                 KUBECONFIG = credentials("config") 
             }
@@ -83,7 +83,7 @@ stages {
                 }
             }
         }
-    stage('Test in Dev') {
+        stage('Test in Dev') {
             steps {
                 script {
                     sh '''
