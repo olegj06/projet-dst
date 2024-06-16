@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+  namespace: development
+  #annotations:
+
+    # ingressclass.kubernetes.io/is-default-class: traefik
+    # Specify the ELB DNS name
+    # Replace "my-elb-dns.amazonaws.com" with the actual DNS name of your ELB
+    # traefik.ingress.kubernetes.io/ssl-redirect: "false"
+    # traefik.ingress.kubernetes.io/force-ssl-redirect: "false"
+    # traefik.ingress.kubernetes.io/backend-protocol: "http"
+    # traefik.ingress.kubernetes.io/proxy-body-size: 50m
+spec:
+  ingressClassName: external-nginx
+  rules:
+  - host: dst-aws.xyz
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: wordpress
+            port:
+              number: 80

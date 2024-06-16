@@ -1,0 +1,18 @@
+#ingress
+namespace: prod
+ingressClassName: external-nginx
+ingress.host: dst-aws.xyz
+
+#mariadb
+namespace: prod
+#mariadb-pvc
+namespace: prod
+mariadb.pvc1.storageClassName: ebs-mariadb1
+mariadb.pvc2.storageClassName: ebs-mariadb2
+
+#mariadb-service
+namespace: prod
+
+#wordpress-service
+namespace: prod
+type: ClusterIP

@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mariadb-pvc1
+  namespace: development
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: ebs-mariadb1
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mariadb-pvc2
+  namespace: development
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: ebs-mariadb2

@@ -1,0 +1,18 @@
+#ingress
+namespace: staging
+ingress.host: 127.0.0.1
+ingressClassName: nginx.ingress.kubernetes.io
+
+#mariadb
+namespace: staging
+#mariadb-pvc
+namespace: staging
+mariadb.pvc1.storageClassName: local-disk1
+mariadb.pvc2.storageClassName: local-disk2
+
+#mariadb-service
+namespace: staging
+
+#wordpress-service
+namespace: staging
+type: NodePort

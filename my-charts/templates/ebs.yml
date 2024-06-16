@@ -1,0 +1,19 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ebs-mariadb1
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp2
+  size: 5Gi
+  zone: eu-west-3a
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: ebs-mariadb2
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp2
+  size: 5Gi
+  zone: eu-west-3b

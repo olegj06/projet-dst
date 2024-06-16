@@ -1,0 +1,15 @@
+apiVersion: v2
+name: my-chart
+version: 1.0.0
+appVersion: 5.8.0
+description: A Helm chart for deploying WordPress and mariadb
+keywords:
+  - wordpress
+  - blog
+  - cms
+home: https://github.com/olegj06/projet-dst/my-chart
+sources:
+  - https://github.com/olegj06/projet-dst/my-chart
+maintainers:
+  - name: olegj
+    email: olegj@free.fr

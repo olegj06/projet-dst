@@ -1,0 +1,26 @@
+services:
+  mariadb : 
+    build:
+      context: ./mariadb
+
+    environment:
+      - MARIADB_ROOT_PASSWORD=root
+      - MARIADB_DATABASE=wp_database
+      - MARIADB_USER=wp_user
+      - MARIADB_PASSWORD=wp_password
+    ports:
+      - 3306:3306
+
+  wordpress :
+    build:
+      context: ./wordpress
+    environment:
+      - WORDPRESS_DB_HOST=mariadb
+      - WORDPRESS_DB_NAME=wp_database
+      - WORDPRESS_DB_USER=wp_user
+      - WORDPRESS_DB_PASSWORD=wp_password
+    depends_on:
+      - mariadb
+    ports:
+      - 80:80
+  
