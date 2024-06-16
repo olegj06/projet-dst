@@ -37,7 +37,7 @@ stages {
             steps {
                     script {
                     sh '''
-                    curl -f http://localhost:8080 || exit 1
+                    curl -f http://localhost:8088 || exit 1
                     mysqladmin ping -h 127.0.0.1 -u root --password=rootpassword || exit 1
                     '''
                     }
