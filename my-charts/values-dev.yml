@@ -3,6 +3,8 @@ namespace: dev
 ingress_host: localhost
 ingressClassName: nginx.ingress.kubernetes.io
 
+#mariadb-secret
+namespace: dev
 #mariadb
 namespace: dev
 #mariadb-pvc
