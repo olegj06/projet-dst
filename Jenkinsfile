@@ -25,6 +25,8 @@ stages {
                 steps {
                     script {
                     sh '''
+                    docker rm -f wordpress
+                    docker rm -f mariadb
                     docker run -d -p 8088:80 --name wordpress $DOCKER_ID/$DOCKER_IMAGE1:$DOCKER_TAG
                     docker run -d -p 3306:3306 --name mariadb $DOCKER_ID/$DOCKER_IMAGE2:$DOCKER_TAG
                     sleep 10
