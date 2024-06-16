@@ -16,3 +16,10 @@ namespace: prod
 #wordpress-service
 namespace: prod
 type: ClusterIP
+
+#wordpress-secret
+namespace: prod
+
+#wordpress
+namespace: prod
+replicas: 2

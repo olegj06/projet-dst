@@ -16,3 +16,10 @@ namespace: staging
 #wordpress-service
 namespace: staging
 type: NodePort
+
+#wordpress-secret
+namespace: staging
+
+#wordpress
+namespace: staging
+replicas: 2

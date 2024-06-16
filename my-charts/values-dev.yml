@@ -19,6 +19,9 @@ namespace: dev
 namespace: dev
 type: NodePort
 
+#wordpress-secret
+namespace: dev
+
 #wordpress
 namespace: dev
 replicas: 1 
