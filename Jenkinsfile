@@ -13,8 +13,8 @@ stages {
                 script {
                 sh '''
                  docker rm -f jenkins
-                 docker build -t $DOCKER_ID/$DOCKER_IMAGE1:$DOCKER_TAG .
-                 docker build -t $DOCKER_ID/$DOCKER_IMAGE2:$DOCKER_TAG .  
+                 docker build -t $DOCKER_ID/$DOCKER_IMAGE1:$DOCKER_TAG -f Docker/wordpress/Dockerfile  .
+                 docker build -t $DOCKER_ID/$DOCKER_IMAGE2:$DOCKER_TAG -f Docker/mariadb/Dockerfile .
                  sleep 6
 
                 '''
@@ -25,9 +25,8 @@ stages {
                 steps {
                     script {
                     sh '''
-                    docker run -d -p 8080:80 --name wordpress1 $DOCKER_ID/$WORDPRESS_IMAGE:$DOCKER_TAG
-                    docker run -d -p 8081:80 --name wordpress2 $DOCKER_ID/$WORDPRESS_IMAGE:$DOCKER_TAG
-                    docker run -d -p 3306:3306 --name mariadb $DOCKER_ID/$MARIADB_IMAGE:$DOCKER_TAG
+                    docker run -d -p 8080:80 --name wordpress $DOCKER_ID/$DOCKER_IMAGE1:$DOCKER_TAG
+                    docker run -d -p 3306:3306 --name mariadb $DOCKER_ID/$DOCKER_IMAGE2:$DOCKER_TAG
                     sleep 10
                     '''
                     }
@@ -39,7 +38,6 @@ stages {
                     script {
                     sh '''
                     curl -f http://localhost:8080 || exit 1
-                    curl -f http://localhost:8081 || exit 1
                     mysqladmin ping -h 127.0.0.1 -u root --password=rootpassword || exit 1
                     '''
                     }
