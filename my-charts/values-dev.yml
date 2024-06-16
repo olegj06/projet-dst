@@ -18,3 +18,7 @@ namespace: dev
 #wordpress-service
 namespace: dev
 type: NodePort
+
+#wordpress
+namespace: dev
+replicas: 1 
