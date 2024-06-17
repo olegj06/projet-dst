@@ -61,7 +61,12 @@ stages {
                 sh '''
                 docker login -u $DOCKER_ID -p $DOCKER_PASS
                 docker push $DOCKER_ID/$DOCKER_IMAGE1:$DOCKER_TAG1
+                docker tag $DOCKER_ID/$DOCKER_IMAGE1:$DOCKER_TAG $DOCKER_ID/$DOCKER_IMAGE1:latest
+                docker push $DOCKER_ID/$DOCKER_IMAGE1:latest
+
                 docker push $DOCKER_ID/$DOCKER_IMAGE2:$DOCKER_TAG2
+                docker tag $DOCKER_ID/$DOCKER_IMAGE2:$DOCKER_TAG $DOCKER_ID/$DOCKER_IMAGE2:latest
+                docker push $DOCKER_ID/$DOCKER_IMAGE2:latest
                 '''
                 }
             }
@@ -81,6 +86,7 @@ stages {
                     cp ./my-charts/values-dev.yml values.yml
                     #helm upgrade --install mariadb ./my-charts --set mariadb.image.tag=${DOCKER_TAG2} --values values.yml --namespace dev                    
                     #helm upgrade --install wordpress ./my-charts --set wordpress.image.tag=${DOCKER_TAG1} --values values.yml --namespace dev
+                    
                     helm upgrade --install mariadb ./my-charts \
                     --set mariadb.image.tag=${DOCKER_TAG2} \
                     --values ./my-charts/values-dev.yml \
