@@ -10,6 +10,11 @@ namespace: prod
 mariadb.pvc1.storageClassName: ebs-mariadb1
 mariadb.pvc2.storageClassName: ebs-mariadb2
 
+#ebs
+namespace: prod
+ebs :
+  enabled: true
+
 #mariadb-service
 namespace: prod
 

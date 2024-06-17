@@ -10,6 +10,11 @@ namespace: staging
 mariadb.pvc1.storageClassName: local-disk1
 mariadb.pvc2.storageClassName: local-disk2
 
+#ebs
+namespace: staging
+ebs :
+  enabled: false
+
 #mariadb-service
 namespace: staging
 
