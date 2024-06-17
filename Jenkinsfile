@@ -61,11 +61,11 @@ stages {
                 sh '''
                 docker login -u $DOCKER_ID -p $DOCKER_PASS
                 docker push $DOCKER_ID/$DOCKER_IMAGE1:$DOCKER_TAG1
-                docker tag $DOCKER_ID/$DOCKER_IMAGE1:$DOCKER_TAG $DOCKER_ID/$DOCKER_IMAGE1:latest
+                docker tag $DOCKER_ID/$DOCKER_IMAGE1:$DOCKER_TAG1 $DOCKER_ID/$DOCKER_IMAGE1:latest
                 docker push $DOCKER_ID/$DOCKER_IMAGE1:latest
 
                 docker push $DOCKER_ID/$DOCKER_IMAGE2:$DOCKER_TAG2
-                docker tag $DOCKER_ID/$DOCKER_IMAGE2:$DOCKER_TAG $DOCKER_ID/$DOCKER_IMAGE2:latest
+                docker tag $DOCKER_ID/$DOCKER_IMAGE2:$DOCKER_TAG2 $DOCKER_ID/$DOCKER_IMAGE2:latest
                 docker push $DOCKER_ID/$DOCKER_IMAGE2:latest
                 '''
                 }
