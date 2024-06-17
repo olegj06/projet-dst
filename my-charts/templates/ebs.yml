@@ -2,6 +2,7 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: ebs-mariadb1
+  namespace: {{.Valeurs.namespace}}
 provisioner: kubernetes.io/aws-ebs
 parameters:
   type: gp2
@@ -12,6 +13,7 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: ebs-mariadb2
+  namespace: {{.Valeurs.namespace}}
 provisioner: kubernetes.io/aws-ebs
 parameters:
   type: gp2

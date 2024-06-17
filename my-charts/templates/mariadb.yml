@@ -3,6 +3,11 @@ kind: StatefulSet
 metadata:
   name: mariadb
   namespace: {{.Values.namespace}}
+annotations:
+  meta.helm.sh/release-name: wordpress
+  meta.helm.sh/release-namespace: {{.Values.namespace}}
+labels:
+  app.kubernetes.io/managed-by: Helm
 spec:
   serviceName: "mariadb"
   replicas: 1
