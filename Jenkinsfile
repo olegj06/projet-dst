@@ -78,9 +78,22 @@ stages {
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
                     cp ./my-charts/values-dev.yml values.yml
-                    helm upgrade --install mariadb ./my-charts --set mariadb.image.tag=${DOCKER_TAG2} --values values.yml --namespace dev                    
-                    helm upgrade --install wordpress ./my-charts --set wordpress.image.tag=${DOCKER_TAG1} --values values.yml --namespace dev
-                   
+                    #helm upgrade --install mariadb ./my-charts --set mariadb.image.tag=${DOCKER_TAG2} --values values.yml --namespace dev                    
+                    #helm upgrade --install wordpress ./my-charts --set wordpress.image.tag=${DOCKER_TAG1} --values values.yml --namespace dev
+                    helm upgrade --install mariadb ./my-charts \
+                    --set mariadb.image.tag=${DOCKER_TAG2} \
+                    --values mariadb-values.yml \
+                    --namespace dev \
+                    --install --wait \
+                    --atomic \
+                    --create-namespace \
+                    && helm upgrade --install wordpress ./my-charts \
+                        --set wordpress.image.tag=${DOCKER_TAG1} \
+                        --values wordpress-values.yml \
+                        --namespace dev \
+                        --install --wait \
+                        --atomic \
+                        --create-namespace
                     '''
                 }
             }
