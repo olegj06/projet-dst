@@ -82,14 +82,14 @@ stages {
                     #helm upgrade --install wordpress ./my-charts --set wordpress.image.tag=${DOCKER_TAG1} --values values.yml --namespace dev
                     helm upgrade --install mariadb ./my-charts \
                     --set mariadb.image.tag=${DOCKER_TAG2} \
-                    --values values-dev.yml \
+                    --values ./my-charts/values-dev.yml \
                     --namespace dev \
                     --install --wait \
                     --atomic \
                     --create-namespace \
                     && helm upgrade --install wordpress ./my-charts \
                         --set wordpress.image.tag=${DOCKER_TAG1} \
-                        --values values-dev.yml \
+                        --values ./my-charts/values-dev.yml \
                         --namespace dev \
                         --install --wait \
                         --atomic \
