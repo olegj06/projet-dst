@@ -129,12 +129,12 @@ stages {
                     helm upgrade --install mariadb ./my-charts \
                     --set mariadb.image.tag=${DOCKER_TAG2} \
                     --values ./my-charts/values-staging.yml \
-                    --namespace dev \
+                    --namespace staging \
                     --install  \
                     && helm upgrade --install wordpress ./my-charts \
                         --set wordpress.image.tag=${DOCKER_TAG1} \
                         --values ./my-charts/values-staging.yml \
-                        --namespace dev \
+                        --namespace staging \
                         --install \
 
                     sleep 10 
