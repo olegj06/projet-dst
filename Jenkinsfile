@@ -83,7 +83,7 @@ stages {
                     rm -Rf .kube
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
-                    cp ./my-charts/values-dev.yml values.yml
+                   
                     #helm upgrade --install mariadb ./my-charts --set mariadb.image.tag=${DOCKER_TAG2} --values values.yml --namespace dev                    
                     #helm upgrade --install wordpress ./my-charts --set wordpress.image.tag=${DOCKER_TAG1} --values values.yml --namespace dev
                     
@@ -115,5 +115,50 @@ stages {
                 }
             }
         }
+
+        stage('Deploy to Staging') {
+            environment {
+                KUBECONFIG = credentials("config") 
+            }
+            steps {
+                script {
+                    sh '''
+                    rm -Rf .kube
+                    mkdir .kube
+                    cat $KUBECONFIG > .kube/config
+                    helm upgrade --install mariadb ./my-charts \
+                    --set mariadb.image.tag=${DOCKER_TAG2} \
+                    --values ./my-charts/values-staging.yml \
+                    --namespace dev \
+                    --install  \
+                    && helm upgrade --install wordpress ./my-charts \
+                        --set wordpress.image.tag=${DOCKER_TAG1} \
+                        --values ./my-charts/values-staging.yml \
+                        --namespace dev \
+                        --install \
+
+                    sleep 10 
+                    '''
+                    
+                }
+            }
+        }
+
+        stage('Test in Staging') {
+            steps {
+                script {
+                    sh '''
+                    kubectl run mysql --image=mysql:5.7 --rm -it --restart=Never --namespace staging -- mysqladmin ping -h mariadb.staging.svc.cluster.local -u root --password=rootpassword || exit 1
+                    
+                    kubectl run curl --image=curlimages/curl --rm -it --restart=Never --namespace staging -- bash -c '
+                    for i in {1..10}; do
+                    echo "Request $i";
+                    curl -f http://wordpress.staging.svc.cluster.local || exit 1;
+                    done'
+                    '''
+                }
+            }
+        }
+
 }
 }
