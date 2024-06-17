@@ -26,18 +26,18 @@ spec:
           env:
             - name: WORDPRESS_DB_HOST
               value: mariadb
-            - name: WORDPRESS_DB_USER
-              valueFrom:
-                secretKeyRef:
-                  name: wordpress-credentials
-                  key: dbuser
-            - name: WORDPRESS_DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: wordpress-credentials
-                  key: dbuserpassword
-            - name: WORDPRESS_DB_NAME
-              valueFrom:
-                secretKeyRef:
-                  name: wordpress-credentials
-                  key: dbname
+            # - name: WORDPRESS_DB_USER
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: wordpress-credentials
+            #       key: dbuser
+            # - name: WORDPRESS_DB_PASSWORD
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: wordpress-credentials
+            #       key: dbuserpassword
+            # - name: WORDPRESS_DB_NAME
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: wordpress-credentials
+            #       key: dbname

@@ -25,29 +25,29 @@ spec:
           ports:
             - containerPort: 3306
           env:
-            - name: MARIADB_ROOT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: mariadb-credentials
-                  key: rpassword
-          env:
-            - name: MARIADB_DATABASE
-              valueFrom:
-                secretKeyRef:
-                  name: mariadb-credentials
-                  key: dbname
-          env:
-            - name: MARIADB_USER
-              valueFrom:
-                secretKeyRef:
-                  name: mariadb-credentials
-                  key: dbuser
-          env:
-            - name: MARIADB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: mariadb-credentials
-                  key: dbuserpassword    
+          #   - name: MARIADB_ROOT_PASSWORD
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: mariadb-credentials
+          #         key: rpassword
+          # env:
+          #   - name: MARIADB_DATABASE
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: mariadb-credentials
+          #         key: dbname
+          # env:
+          #   - name: MARIADB_USER
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: mariadb-credentials
+          #         key: dbuser
+          # env:
+          #   - name: MARIADB_PASSWORD
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: mariadb-credentials
+          #         key: dbuserpassword    
           volumeMounts:
             - name: mariadb-storage
               mountPath: /var/lib/mariadbql/data
