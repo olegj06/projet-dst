@@ -20,4 +20,4 @@ parameters:
   type: gp2
   size: 5Gi
   zone: eu-west-3b
-{{ -end }}
+{{- end }}
