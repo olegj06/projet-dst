@@ -21,7 +21,7 @@ namespace: dev
 
 #wordpress-service
 namespace: dev
-type: NodePort
+type: LoadBalancer
 
 #wordpress-secret
 namespace: dev
