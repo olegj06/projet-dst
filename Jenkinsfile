@@ -85,15 +85,15 @@ stages {
                     --values ./my-charts/values-dev.yml \
                     --namespace dev \
                     --install --wait \
-                    --atomic \
-                    --create-namespace \
+                    #--atomic \
+                    
                     && helm upgrade --install wordpress ./my-charts \
                         --set wordpress.image.tag=${DOCKER_TAG1} \
                         --values ./my-charts/values-dev.yml \
                         --namespace dev \
                         --install --wait \
-                        --atomic \
-                        --create-namespace
+                        #--atomic \
+                        
                     '''
                 }
             }
