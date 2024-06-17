@@ -41,7 +41,7 @@ spec:
             #     secretKeyRef:
             #       name: wordpress-credentials
             #       key: dbname
-            readinessProbe:
+          readinessProbe:
               httpGet:
                 path: /
                 port: 80
