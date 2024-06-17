@@ -102,7 +102,7 @@ stages {
             steps {
                 script {
                     sh '''
-                    kubectl run curl --image=curlimages/curl --rm -it --restart=Never --namespace dev -- curl -f http://wordpress1.dev.svc.cluster.local || exit 1
+                    kubectl run curl --image=curlimages/curl --rm -it --restart=Never --namespace dev -- curl -f http://wordpress.dev.svc.cluster.local || exit 1
                     kubectl run mysql --image=mysql:5.7 --rm -it --restart=Never --namespace dev -- mysqladmin ping -h mariadb.dev.svc.cluster.local -u root --password=rootpassword || exit 1
                     '''
                 }
