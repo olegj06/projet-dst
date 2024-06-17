@@ -14,8 +14,7 @@ mariadb_pvc2_storageClassName: local-disk2
 
 #ebs
 namespace: dev
-ebs :
-  enabled: false
+ebs_enabled: false
 
 #mariadb-service
 namespace: dev

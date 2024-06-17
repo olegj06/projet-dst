@@ -12,8 +12,7 @@ mariadb.pvc2.storageClassName: ebs-mariadb2
 
 #ebs
 namespace: prod
-ebs :
-  enabled: true
+ebs_enabled: true
 
 #mariadb-service
 namespace: prod
