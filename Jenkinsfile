@@ -13,7 +13,8 @@ stages {
             steps {
                 script {
                 sh '''
-                 docker rm -f jenkins
+                 docker rm -f  mariadb
+                 docker rm -f  wordpress
                  docker build -t $DOCKER_ID/$DOCKER_IMAGE1:$DOCKER_TAG1 -f Docker/wordpress/Dockerfile  .
                  docker build -t $DOCKER_ID/$DOCKER_IMAGE2:$DOCKER_TAG2 -f Docker/mariadb/Dockerfile .
                  sleep 6
@@ -84,14 +85,14 @@ stages {
                     --set mariadb.image.tag=${DOCKER_TAG2} \
                     --values ./my-charts/values-dev.yml \
                     --namespace dev \
-                    --install --wait \
+                    --install  \
                     #--atomic \
                     
                     && helm upgrade --install wordpress ./my-charts \
                         --set wordpress.image.tag=${DOCKER_TAG1} \
                         --values ./my-charts/values-dev.yml \
                         --namespace dev \
-                        --install --wait \
+                        --install  \
                         #--atomic \
                         
                     '''
