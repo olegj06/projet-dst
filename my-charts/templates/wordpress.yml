@@ -25,7 +25,7 @@ spec:
             - containerPort: 80
           env:
             - name: WORDPRESS_DB_HOST
-              value: mariadb
+              value: database
             - name: WORDPRESS_DB_USER
               valueFrom:
                 secretKeyRef:
