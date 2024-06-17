@@ -99,7 +99,8 @@ stages {
                           --namespace dev \
                           --install \
                           #--atomic \
-                        
+
+                    sleep 10   
                     '''
                 }
             }
