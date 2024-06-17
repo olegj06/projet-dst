@@ -85,14 +85,13 @@ stages {
                     --set mariadb.image.tag=${DOCKER_TAG2} \
                     --values ./my-charts/values-dev.yml \
                     --namespace dev \
-                    --install  \
+                    --install --wait \
                     #--atomic \
-                    
                     && helm upgrade --install wordpress ./my-charts \
                         --set wordpress.image.tag=${DOCKER_TAG1} \
                         --values ./my-charts/values-dev.yml \
                         --namespace dev \
-                        --install  \
+                        --install --wait \
                         #--atomic \
                         
                     '''
