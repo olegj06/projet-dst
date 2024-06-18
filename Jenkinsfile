@@ -112,7 +112,7 @@ stages {
                     kubectl wait pod \
                     --all \
                     --for=condition=Ready \
-                    --namespace=${dev}
+                    --namespace dev
                     kubectl run curl --image=curlimages/curl --rm -it --restart=Never --namespace dev -- curl -f http://wordpress.dev.svc.cluster.local || exit 1
                     kubectl run mysql --image=mysql:5.7 --rm -it --restart=Never --namespace dev -- mysqladmin ping -h mariadb.dev.svc.cluster.local -u root --password=rootpassword || exit 1
                     '''
@@ -155,7 +155,7 @@ stages {
                     kubectl wait pod \
                     --all \
                     --for=condition=Ready \
-                    --namespace=${staging}
+                    --namespace staging
 
                     kubectl run mysql --image=mysql:5.7 --rm -it --restart=Never --namespace staging -- mysqladmin ping -h mariadb.staging.svc.cluster.local -u root --password=rootpassword || exit 1
                     kubectl run curl --image=curlimages/curl --rm -it --restart=Never --namespace staging -- /bin/sh -c '
