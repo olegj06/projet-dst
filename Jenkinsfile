@@ -231,14 +231,6 @@ stages {
             }
             steps{
                 script{
-                    sh '''
-                    rm -Rf .kube
-                    mkdir .kube
-                    cat $KUBECONFIG > .kube/config
-                    aws eks update-kubeconfig --name ProjetR     
-
-                    '''
-
                     dir('terraform'){
                         sh '''
                         export TF_VAR_aws_access_key=$AWS_ACCESS_KEY_ID
@@ -246,6 +238,22 @@ stages {
                         terrafrom apply 
                         '''
                     }
+                    sh '''
+                    rm -Rf .kube
+                    mkdir .kube
+                    cat $KUBECONFIG > .kube/config
+                    aws eks update-kubeconfig --name ProjetR 
+                    helm upgrade --install mariadb ./my-charts \
+                    --set mariadb.image.tag=${DOCKER_TAG2} \
+                    --values ./my-charts/values-prod.yml \
+                    --namespace prod \
+                    --install  \
+                    && helm upgrade --install wordpress ./my-charts \
+                        --set wordpress.image.tag=${DOCKER_TAG1} \
+                        --values ./my-charts/values-prod.yml \
+                        --namespace prod \
+                        --install \
+                    '''
                 }
             }
         }
