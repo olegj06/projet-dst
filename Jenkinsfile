@@ -84,14 +84,12 @@ stages {
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
                                                 
-                    helm upgrade --install mariadb ./my-charts \
+                    helm upgrade --install infra ./my-charts \
                     --set mariadb.image.tag=${DOCKER_TAG2} \
+                    --set wordpress.image.tag=${DOCKER_TAG1}\
                     --values ./my-charts/values-dev.yml \
                     --namespace dev \
-                    && helm upgrade --install wordpress ./my-charts \
-                    --set wordpress.image.tag=${DOCKER_TAG1} \
-                    --values ./my-charts/values-dev.yml \
-                    --namespace dev \
+                    
                     
 
                     sleep 10   
@@ -124,14 +122,12 @@ stages {
                     rm -Rf .kube
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
-                    helm upgrade --install mariadb ./my-charts \
+                    helm upgrade --install infra ./my-charts \
                     --set mariadb.image.tag=${DOCKER_TAG2} \
+                    --set wordpress.image.tag=${DOCKER_TAG1}\
                     --values ./my-charts/values-staging.yml \
                     --namespace staging \
-                    && helm upgrade --install wordpress ./my-charts \
-                        --set wordpress.image.tag=${DOCKER_TAG1} \
-                        --values ./my-charts/values-staging.yml \
-                        --namespace staging \
+                   
                         
 
                     sleep 10 
@@ -236,16 +232,13 @@ stages {
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
                     aws eks update-kubeconfig --region eu-west-3 --name ProjetR 
-                    helm upgrade --install mariadb ./my-charts \
+                    helm upgrade --install infra ./my-charts \
                     --set mariadb.image.tag=${DOCKER_TAG2} \
+                    --set wordpress.image.tag=${DOCKER_TAG1}\
                     --values ./my-charts/values-prod.yml \
                     --namespace prod \
                     
-                    && helm upgrade --install wordpress ./my-charts \
-                        --set wordpress.image.tag=${DOCKER_TAG1} \
-                        --values ./my-charts/values-prod.yml \
-                        --namespace prod \
-                        
+            
                     kubectl create namespace ingress-system
                     helm install nginx-ingress ingress-nginx/ingress-nginx --namespace nginx-ingress
 
