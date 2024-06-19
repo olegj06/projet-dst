@@ -3,25 +3,23 @@ namespece: prod
 ingressClassName: external-nginx
 ingress.host: dst-aws.xyz
 
-#mariadb
 
-#mariadb-pvc
-
+#volume claim template
+VCT_enabled: false
+#volume claim:
 mariadb.pvc1.storageClassName: ebs-mariadb1
 mariadb.pvc2.storageClassName: ebs-mariadb2
 
 #ebs
-
 ebs_enabled: true
 
-#mariadb-service
 
 
 #wordpress-service
 
 type: ClusterIP
 
-#wordpress-secret
+
 
 
 #wordpress

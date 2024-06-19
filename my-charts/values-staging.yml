@@ -3,27 +3,18 @@ namespace: staging
 ingress.host: localhost
 ingressClassName: nginx.ingress.kubernetes.io
 
-#mariad
 
-#mariadb-pv
 
-mariadb.pvc1.storageClassName: local-disk-staging
-mariadb.pvc2.storageClassName: local-disk-staging
-
+#volume claim template
+VCT_enabled: true
 #ebs
-
 ebs_enabled: false
 
-#mariadb-servic
 
-
-#wordpress-servic
+#wordpress-service
 
 type: NodePort
 
-#wordpress-secre
-
-
-#wordpres
+#wordpress
 
 replicas: 2

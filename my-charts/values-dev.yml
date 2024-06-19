@@ -3,27 +3,19 @@ namespace: dev
 ingress_host: localhost
 ingressClassName: nginx.ingress.kubernetes.io
 
-#mariadb-secret
 
-#mariadb
 
-#mariadb-pvc
-
-mariadb_pvc1_storageClassName: local-disk-dev
-mariadb_pvc2_storageClassName: local-disk-dev
-
+#volume claim template
+VCT_enabled: true
 #ebs
-
 ebs_enabled: false
 
-#mariadb-service
+
 
 
 #wordpress-service
 
 type: NodePort
-
-#wordpress-secret
 
 
 #wordpress

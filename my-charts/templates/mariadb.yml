@@ -24,33 +24,11 @@ spec:
           image: olegj06/mariadb:latest
           ports:
             - containerPort: 3306
-          env:
-          #   - name: MARIADB_ROOT_PASSWORD
-          #     valueFrom:
-          #       secretKeyRef:
-          #         name: mariadb-credentials
-          #         key: rpassword
-          # env:
-          #   - name: MARIADB_DATABASE
-          #     valueFrom:
-          #       secretKeyRef:
-          #         name: mariadb-credentials
-          #         key: dbname
-          # env:
-          #   - name: MARIADB_USER
-          #     valueFrom:
-          #       secretKeyRef:
-          #         name: mariadb-credentials
-          #         key: dbuser
-          # env:
-          #   - name: MARIADB_PASSWORD
-          #     valueFrom:
-          #       secretKeyRef:
-          #         name: mariadb-credentials
-          #         key: dbuserpassword    
+             
           volumeMounts:
             - name: mariadb-storage
               mountPath: /var/lib/mariadbql/data
+  {{- if .Values.VCT_enabled }}
   volumeClaimTemplates:
     - metadata:
         name: mariadb-storage
@@ -59,3 +37,4 @@ spec:
         resources:
           requests:
             storage: 10Gi
+  {{- end }}
