@@ -212,7 +212,7 @@ stages {
                 script{
                     dir('terraform'){
                          sh '''
-                         terraform plan -var="aws_access_key=AWS_ACCESS_KEY_ID" -var="aws_secret_key=AWS_SECRET_ACCESS_KEY"
+                         terraform plan 
                          '''
                     }
                     input(message: "Approve?", ok: "proceeding")
@@ -239,7 +239,7 @@ stages {
 
                     dir('terraform'){
                         sh '''
-                        terrafrom apply -var="aws_access_key=AWS_ACCESS_KEY_ID" -var="aws_secret_key=AWS_SECRET_ACCESS_KEY" -auto-approve'
+                        terrafrom apply 
                         '''
                     }
                 }
