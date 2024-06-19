@@ -88,12 +88,13 @@ stages {
                     --set mariadb.image.tag=${DOCKER_TAG2} \
                     --values ./my-charts/values-dev.yml \
                     --namespace dev \
-                    --install  \
+                    
+
                     helm upgrade --install wordpress ./my-charts \
                     --set wordpress.image.tag=${DOCKER_TAG1} \
                     --values ./my-charts/values-dev.yml \
                     --namespace dev \
-                    --install \
+                    
 
                     sleep 10   
                     '''
@@ -129,12 +130,12 @@ stages {
                     --set mariadb.image.tag=${DOCKER_TAG2} \
                     --values ./my-charts/values-staging.yml \
                     --namespace staging \
-                    --install  \
+                    
                     && helm upgrade --install wordpress ./my-charts \
                         --set wordpress.image.tag=${DOCKER_TAG1} \
                         --values ./my-charts/values-staging.yml \
                         --namespace staging \
-                        --install \
+                        
 
                     sleep 10 
                     '''
@@ -242,12 +243,12 @@ stages {
                     --set mariadb.image.tag=${DOCKER_TAG2} \
                     --values ./my-charts/values-prod.yml \
                     --namespace prod \
-                    --install  \
+                    
                     && helm upgrade --install wordpress ./my-charts \
                         --set wordpress.image.tag=${DOCKER_TAG1} \
                         --values ./my-charts/values-prod.yml \
                         --namespace prod \
-                        --install \
+                        
                     kubectl create namespace ingress-system
                     helm install nginx-ingress ingress-nginx/ingress-nginx --namespace nginx-ingress
 
