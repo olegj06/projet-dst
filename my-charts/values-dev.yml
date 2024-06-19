@@ -9,8 +9,8 @@ ingressClassName: nginx.ingress.kubernetes.io
 
 #mariadb-pvc
 
-mariadb_pvc1_storageClassName: local-disk1
-mariadb_pvc2_storageClassName: local-disk2
+mariadb_pvc1_storageClassName: local-disk-dev
+mariadb_pvc2_storageClassName: local-disk-dev
 
 #ebs
 
