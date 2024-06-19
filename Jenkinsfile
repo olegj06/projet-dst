@@ -235,7 +235,7 @@ stages {
                         sh '''
                         export TF_VAR_aws_access_key=$AWS_ACCESS_KEY_ID
                         export TF_VAR_aws_secret_key=$AWS_SECRET_ACCESS_KEY
-                        terrafrom apply 
+                        terraform apply 
                         '''
                     }
                     sh '''
