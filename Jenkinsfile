@@ -89,7 +89,7 @@ stages {
                     --values ./my-charts/values-dev.yml \
                     --namespace dev \
                     --install  \
-                    && helm upgrade --install wordpress ./my-charts \
+                    helm upgrade --install wordpress ./my-charts \
                     --set wordpress.image.tag=${DOCKER_TAG1} \
                     --values ./my-charts/values-dev.yml \
                     --namespace dev \
