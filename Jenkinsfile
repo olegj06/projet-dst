@@ -242,7 +242,7 @@ stages {
                     rm -Rf .kube
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
-                    sudo -S aws eks update-kubeconfig --region eu-west-3 --name ProjetR 
+                    aws eks update-kubeconfig --region eu-west-3 --name ProjetR 
                     helm upgrade --install mariadb ./my-charts \
                     --set mariadb.image.tag=${DOCKER_TAG2} \
                     --values ./my-charts/values-prod.yml \
