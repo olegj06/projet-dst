@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wordpress
+  name: {{.Release.Name}}-wordpress
   namespace: {{.Values.namespace}}
   annotations:
-    meta.helm.sh/release-name: wordpress
-    meta.helm.sh/release-namespace: {{.Values.namespace}}
+    meta.helm.sh/release-name: {{.Release.Name}}-wordpress
+    meta.helm.sh/release-namespace: {{.Release.Namespace}}
   labels:
     app.kubernetes.io/managed-by: Helm
 spec:

@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: mariadb
+  name: {{.Release.Name}}-mariadb
   namespace: {{.Values.namespace}}
   annotations:
-    meta.helm.sh/release-name: mariadb
+    meta.helm.sh/release-name: {{ .Release.Name}}-mariadb
     meta.helm.sh/release-namespace: {{.Values.namespace}}
   labels:
     app.kubernetes.io/managed-by: Helm
 spec:
-  serviceName: "mariadb"
+  serviceName: mariadb  # j'ai supprimé  "mariadb"
   replicas: 1
   selector:
     matchLabels:
