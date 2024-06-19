@@ -191,7 +191,9 @@ stages {
             steps{
                 script{
                     dir('terraform') {
-                        sh 'terraform validate -var "aws_access_key=$AWS_ACCESS_KEY_ID" -var "aws_secret_key=$AWS_SECRET_ACCESS_KEY"'
+                        sh '''
+                        terraform validate -var "aws_access_key=$AWS_ACCESS_KEY_ID" -var "aws_secret_key=$AWS_SECRET_ACCESS_KEY"
+                        '''
                     }
                 }
             }
@@ -206,7 +208,9 @@ stages {
             steps{
                 script{
                     dir('terraform'){
-                         sh 'terraform plan -var "aws_access_key=$AWS_ACCESS_KEY_ID" -var "aws_secret_key=$AWS_SECRET_ACCESS_KEY"'
+                         sh '''
+                         terraform plan -var "aws_access_key=$AWS_ACCESS_KEY_ID" -var "aws_secret_key=$AWS_SECRET_ACCESS_KEY"
+                         '''
                     }
                     input(message: "Approve?", ok: "proceeding")
                 }
