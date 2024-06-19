@@ -83,22 +83,17 @@ stages {
                     rm -Rf .kube
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
-                   
-                    #helm upgrade --install mariadb ./my-charts --set mariadb.image.tag=${DOCKER_TAG2} --values values.yml --namespace dev                    
-                    #helm upgrade --install wordpress ./my-charts --set wordpress.image.tag=${DOCKER_TAG1} --values values.yml --namespace dev
-                    
+                                                
                     helm upgrade --install mariadb ./my-charts \
                     --set mariadb.image.tag=${DOCKER_TAG2} \
                     --values ./my-charts/values-dev.yml \
                     --namespace dev \
                     --install  \
-                    #--atomic \
                     && helm upgrade --install wordpress ./my-charts \
-                          --set wordpress.image.tag=${DOCKER_TAG1} \
-                          --values ./my-charts/values-dev.yml \
-                          --namespace dev \
-                          --install \
-                          #--atomic \
+                    --set wordpress.image.tag=${DOCKER_TAG1} \
+                    --values ./my-charts/values-dev.yml \
+                    --namespace dev \
+                    --install \
 
                     sleep 10   
                     '''
