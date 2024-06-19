@@ -1,29 +1,29 @@
 #ingress
-namespace: prod
+namespece: prod
 ingressClassName: external-nginx
 ingress.host: dst-aws.xyz
 
 #mariadb
-namespace: prod
+
 #mariadb-pvc
-namespace: prod
+
 mariadb.pvc1.storageClassName: ebs-mariadb1
 mariadb.pvc2.storageClassName: ebs-mariadb2
 
 #ebs
-namespace: prod
+
 ebs_enabled: true
 
 #mariadb-service
-namespace: prod
+
 
 #wordpress-service
-namespace: prod
+
 type: ClusterIP
 
 #wordpress-secret
-namespace: prod
+
 
 #wordpress
-namespace: prod
+
 replicas: 2

@@ -4,28 +4,28 @@ ingress_host: localhost
 ingressClassName: nginx.ingress.kubernetes.io
 
 #mariadb-secret
-namespace: dev
+
 #mariadb
-namespace: dev
+
 #mariadb-pvc
-namespace: dev
+
 mariadb_pvc1_storageClassName: local-disk1
 mariadb_pvc2_storageClassName: local-disk2
 
 #ebs
-namespace: dev
+
 ebs_enabled: false
 
 #mariadb-service
-namespace: dev
+
 
 #wordpress-service
-namespace: dev
+
 type: NodePort
 
 #wordpress-secret
-namespace: dev
+
 
 #wordpress
-namespace: dev
+
 replicas: 1 

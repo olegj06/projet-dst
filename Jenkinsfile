@@ -167,6 +167,73 @@ stages {
                 }
             }
         }
+        
+        stage('Initializing Terraform') {
+            steps{
+                script{
+                    dir('terraform') {
+                        sh 'terraform init'
+                    }
+                }
+            }
+        }
+        stage('Validating Terraform') {
+             environment{
+                AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID') 
+                AWS_SECRET_ACCESS_KEY = credentials ('AWS_SECRET_ACCESS_KEY')
+                AWS_DEFAULT_REGION = 'eu-west-3'
+            }
+            steps{
+                script{
+                    dir('terraform') {
+                        sh 'terraform validate -var "aws_access_key=$AWS_ACCESS_KEY_ID" -var "aws_secret_key=$AWS_SECRET_ACCESS_KEY"'
+                    }
+                }
+            }
+        }
 
+        stage('Approving the plan'){
+            environment{
+                AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID') 
+                AWS_SECRET_ACCESS_KEY = credentials ('AWS_SECRET_ACCESS_KEY')
+                AWS_DEFAULT_REGION = 'eu-west-3'
+            }
+            steps{
+                script{
+                    dir('terraform'){
+                         sh 'terraform plan -var "aws_access_key=$AWS_ACCESS_KEY_ID" -var "aws_secret_key=$AWS_SECRET_ACCESS_KEY"'
+                    }
+                    input(message: "Approve?", ok: "proceeding")
+                }
+            }
+        }
+
+        stage('Deploy to prod on AWS EKS'){
+                environment {
+                KUBECONFIG = credentials("config")
+                AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID') 
+                AWS_SECRET_ACCESS_KEY = credentials ('AWS_SECRET_ACCESS_KEY')
+                AWS_DEFAULT_REGION = 'eu-west-3'
+            }
+            steps{
+                script{
+                    sh '''
+                    rm -Rf .kube
+                    mkdir .kube
+                    cat $KUBECONFIG > .kube/config
+                    aws eks update-kubeconfig --name ProjetR     
+
+                    '''
+
+                    dir('terraform'){
+                        sh '''
+                        terrafrom apply -var "aws_access_key=$AWS_ACCESS_KEY_ID" -var "aws_secret_key=$AWS_SECRET_ACCESS_KEY" -auto-approve'
+                        '''
+                    }
+                }
+            }
+        }
 }
 }
+        
+    
