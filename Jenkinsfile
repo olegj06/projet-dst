@@ -233,9 +233,9 @@ stages {
                     rm -Rf .kube
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
-                   
-                    aws eks update-kubeconfig --region eu-west-3 --name ProjetR --kubeconfig .kube/config
                     export KUBECONFIG=.kube/config
+                    aws eks update-kubeconfig --region eu-west-3 --name ProjetR --kubeconfig .kube/config
+                    
     
                     helm upgrade --install infra ./my-charts \
                         --set mariadb.image.tag=${DOCKER_TAG2} \
