@@ -5,7 +5,7 @@ ingress.host: dst-aws.xyz
 
 
 #volume claim template
-VCT_enabled: false
+VCT_enabled: true
 #volume claim:
 mariadb.pvc1.storageClassName: ebs-mariadb1
 mariadb.pvc2.storageClassName: ebs-mariadb2
