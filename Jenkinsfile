@@ -237,6 +237,16 @@ stages {
                     
                     aws eks update-kubeconfig --region eu-west-3 --name ProjetR --kubeconfig .kube/config
                     export KUBECONFIG=.kube/config
+                    kubectl apply -f - <<EOF
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: prod
+EOF
+
+
+
+
     
                     helm upgrade --install infra ./my-charts \
                         --set mariadb.image.tag=${DOCKER_TAG2} \
