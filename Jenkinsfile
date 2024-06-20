@@ -229,23 +229,26 @@ stages {
                     }
                 script{
                     sh '''
-
+                    export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+                    export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
                     rm -Rf .kube
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
-                    aws eks update-kubeconfig --region eu-west-3 --name ProjetR --verbose
                     
-                    helm upgrade --install infra ./my-charts \
-                    --set mariadb.image.tag=${DOCKER_TAG2} \
-                    --set wordpress.image.tag=${DOCKER_TAG1}\
-                    --values ./my-charts/values-prod.yml \
-                    --namespace prod \
+                    aws eks update-kubeconfig --region eu-west-3 --name ProjetR --verbose
+                    '''
+                    
+                    // helm upgrade --install infra ./my-charts \
+                    // --set mariadb.image.tag=${DOCKER_TAG2} \
+                    // --set wordpress.image.tag=${DOCKER_TAG1}\
+                    // --values ./my-charts/values-prod.yml \
+                    // --namespace prod \
                     
             
-                    kubectl create namespace ingress-system
-                    helm install nginx-ingress ingress-nginx/ingress-nginx --namespace nginx-ingress
+                    // kubectl create namespace ingress-system
+                    // helm install nginx-ingress ingress-nginx/ingress-nginx --namespace nginx-ingress
 
-                    '''
+                    
                 }
                 }
             }
