@@ -237,11 +237,11 @@ stages {
                     aws eks update-kubeconfig --region eu-west-3 --name ProjetR --kubeconfig .kube/config
                     
     
-                    #helm upgrade --install infra ./my-charts \
-                    #   --set mariadb.image.tag=${DOCKER_TAG2} \
-                    #   --set wordpress.image.tag=${DOCKER_TAG1}\
-                    #   --values ./my-charts/values-prod.yml \
-                    #   --namespace prod \
+                    helm upgrade --install infra ./my-charts \
+                        --set mariadb.image.tag=${DOCKER_TAG2} \
+                        --set wordpress.image.tag=${DOCKER_TAG1}\
+                        --values ./my-charts/values-prod.yml \
+                        --namespace prod \
 
                     kubectl apply -f - <<EOF
 apiVersion: v1
