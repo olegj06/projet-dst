@@ -227,7 +227,9 @@ stages {
                         terraform apply --auto-approve
                         '''
                     }
+                script{
                     sh '''
+
                     rm -Rf .kube
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
@@ -244,6 +246,7 @@ stages {
                     helm install nginx-ingress ingress-nginx/ingress-nginx --namespace nginx-ingress
 
                     '''
+                }
                 }
             }
         }
