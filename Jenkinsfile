@@ -229,7 +229,7 @@ stages {
                     }
                
                     sh '''
-                   
+                    kubectl delet
                     rm -Rf .kube
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
@@ -243,12 +243,18 @@ stages {
                     #   --values ./my-charts/values-prod.yml \
                     #   --namespace prod \
                     
+                    kubectl apply -f - <<EOF
+                    apiVersion: v1
+                    kind: Namespace
+                    metadata:
+                      name: nginx-ingress
+                    EOF
                     
                     helm repo add nginx-stable https://helm.nginx.com/stable
                     helm repo update
 
                     helm upgrade --install nginx-ingress nginx-stable/nginx-ingress --set rbac.create=true --namespace nginx-ingress
-                    --create-namespace
+                    
                     '''
             
                 }
