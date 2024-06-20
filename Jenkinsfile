@@ -229,7 +229,7 @@ stages {
                     }
                
                     sh '''
-                    kubectl delet
+                    
                     rm -Rf .kube
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
@@ -242,7 +242,7 @@ stages {
                     #   --set wordpress.image.tag=${DOCKER_TAG1}\
                     #   --values ./my-charts/values-prod.yml \
                     #   --namespace prod \
-                    
+
                     kubectl apply -f - <<EOF
                     apiVersion: v1
                     kind: Namespace
