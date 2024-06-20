@@ -1,5 +1,5 @@
 #ingress
-namespece: prod
+namespace: prod
 ingressClassName: external-nginx
 ingress.host: dst-aws.xyz
 
