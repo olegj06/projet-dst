@@ -235,18 +235,20 @@ stages {
                     cat $KUBECONFIG > .kube/config
                     
                     aws eks update-kubeconfig --region eu-west-3 --name ProjetR --kubeconfig .kube/config
-                    
-                    
+                    kubectl config use-context ProjetR
+    
                     helm upgrade --install infra ./my-charts \
                        --set mariadb.image.tag=${DOCKER_TAG2} \
                        --set wordpress.image.tag=${DOCKER_TAG1}\
                        --values ./my-charts/values-prod.yml \
                        --namespace prod \
                     
-            
-                       kubectl create namespace ingress-system
-                       helm install nginx-ingress ingress-nginx/ingress-nginx --namespace nginx-ingress
+                    
+                    helm repo add nginx-stable https://helm.nginx.com/stable
+                    && helm repo update
 
+                    helm upgrade --install nginx-ingress nginx-stable/nginx-ingress --set rbac.create=true --namespace nginx-ingress
+                    --create-namespace
                     '''
             
                 }
