@@ -160,7 +160,7 @@ stages {
         stage('Initializing Terraform') {
             environment{
                 AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID') 
-                AWS_SECRET_ACCESS_KEY = credentials ('AWS_SECRET_ACCESS_KEY')
+                AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
                 AWS_DEFAULT_REGION = 'eu-west-3'
             }
             steps{
@@ -174,7 +174,7 @@ stages {
         stage('Validating Terraform') {
              environment{
                 AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID') 
-                AWS_SECRET_ACCESS_KEY = credentials ('AWS_SECRET_ACCESS_KEY')
+                AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
                 AWS_DEFAULT_REGION = 'eu-west-3'
             }
             steps{
@@ -194,7 +194,7 @@ stages {
         stage('Approving the plan'){
             environment{
                 AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID') 
-                AWS_SECRET_ACCESS_KEY = credentials ('AWS_SECRET_ACCESS_KEY')
+                AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
                 AWS_DEFAULT_REGION = 'eu-west-3'
             }
             steps{
@@ -212,10 +212,10 @@ stages {
         }
 
         stage('Deploy to prod on AWS EKS'){
-                environment {
+            environment {
                 KUBECONFIG = credentials("config")
                 AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID') 
-                AWS_SECRET_ACCESS_KEY = credentials ('AWS_SECRET_ACCESS_KEY')
+                AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
                 AWS_DEFAULT_REGION = 'eu-west-3'
             }
             steps{
@@ -231,7 +231,8 @@ stages {
                     rm -Rf .kube
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
-                    aws eks update-kubeconfig --region eu-west-3 --name ProjetR 
+                    aws eks update-kubeconfig --region eu-west-3 --name ProjetR --verbose
+                    
                     helm upgrade --install infra ./my-charts \
                     --set mariadb.image.tag=${DOCKER_TAG2} \
                     --set wordpress.image.tag=${DOCKER_TAG1}\
