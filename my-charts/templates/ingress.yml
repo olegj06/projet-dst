@@ -18,7 +18,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: wordpress-service
+            name: wordpress
             port:
               number: 80
  {{- if .Values.ingress_tls }}
