@@ -244,11 +244,11 @@ stages {
                     #   --namespace prod \
 
                     kubectl apply -f - <<EOF
-                    apiVersion: v1
-                    kind: Namespace
-                    metadata:
-                      name: nginx-ingress
-                    EOF
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nginx-ingress
+EOF
                     
                     helm repo add nginx-stable https://helm.nginx.com/stable
                     helm repo update
