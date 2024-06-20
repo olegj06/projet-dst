@@ -234,7 +234,7 @@ stages {
                     mkdir .kube
                     cat $KUBECONFIG > .kube/config
                     
-                    aws eks update-kubeconfig --region eu-west-3 --name ProjetR 
+                    aws eks update-kubeconfig --region eu-west-3 --name ProjetR --kubeconfig .kube/config
                     
                     
                     helm upgrade --install infra ./my-charts \
