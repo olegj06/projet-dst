@@ -6,8 +6,10 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
     {{- if .Values.use_ingress_annotations }}
-    {{ toYaml .Values.ingress_annotations | indent 4 }}
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  # ... other annotations from .Values.ingress_annotations
     {{- end }}
+    
 spec:
   ingressClassName: {{.Values.ingressClassName}}
   rules:
