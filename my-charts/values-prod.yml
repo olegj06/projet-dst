@@ -8,7 +8,7 @@ ingress_annotations:
   # nginx.ingress.kubernetes.io/ssl-redirect: "true"
   # nginx.ingress.kubernetes.io/proxy-body-size: 200m
   
-ingressClassName: external-nginx
+ingressClassName: nginx
 ingress_host: dst-aws.xyz
 ingress_tls: true
 ingress_tls_secretName: letsencrypt-prod
