@@ -21,9 +21,9 @@ spec:
             name: wordpress
             port:
               number: 80
- {{- if .Values.ingress_tls }}
-  tls:
-    - hosts:
-        - {{ .Values.ingress_host }}
-      secretName: {{ .Values.ingress_tls_secretName }}
-  {{- end }}
+{{- if .Values.ingress_tls }}
+tls:
+  - hosts:
+      - {{ .Values.ingress_host }}
+    secretName: {{ .Values.ingress_tls_secretName }}
+{{- end }}
