@@ -8,5 +8,11 @@ spec:
   selector:
     app: wordpress
   ports:
+    name: http
     - port: 80
+    - targetPort: 80
+    name: https:
+    - port: 443
+    - targetPort: 443
+
       
