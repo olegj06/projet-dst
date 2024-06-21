@@ -1,6 +1,6 @@
 #ingress
 namespace: prod
-ingress_annotations: true
+#ingress_annotations: true
 ingress_annotations: 
   cert-manager.io/cluster-issuer: letsencrypt-prod
   # nginx.ingress.kubernetes.io/rewrite-target: /
@@ -9,7 +9,7 @@ ingress_annotations:
   
 ingressClassName: external-nginx
 ingress_host: dst-aws.xyz
-ingress_tls: true
+#ingress_tls: true
 ingress_tls_secret: letsencrypt-prod
   
 
