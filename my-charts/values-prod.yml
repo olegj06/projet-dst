@@ -1,16 +1,16 @@
 #ingress
 namespace: prod
 ingress_annotations: true
-ingress_annotations:
+ingress_annotations: 
+  cert-manager.io/cluster-issuer: letsencrypt-prod
   # nginx.ingress.kubernetes.io/rewrite-target: /
   # nginx.ingress.kubernetes.io/ssl-redirect: "true"
   # nginx.ingress.kubernetes.io/proxy-body-size: 200m
-  cert-manager.io/cluster-issuer: letsencrypt-prod
+  
 ingressClassName: external-nginx
 ingress_host: dst-aws.xyz
-tls:
-   - host: dst-aws.xyz
-     secretName: letsencrypt-prod
+ingress_tls: true
+ingress_tls_secret: letsencrypt-prod
   
 
 #volume claim template
