@@ -27,7 +27,7 @@ spec:
         volumeMounts:
         - name: wordpress-certificates
           mountPath: "/etc/wordpress/certs"  # Mount path for SSL certificates
-      volumes:
+    volumes:
       - name: wordpress-certificates
         secret:
           secretName: wordpress-tls
