@@ -278,9 +278,9 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-prod
     solvers:
-    - http01:
-        ingress:
-          class: nginx
+      - http01:
+          ingress:
+            class: nginx
 EOF                   
                     
                     kubectl apply -f - <<EOF
