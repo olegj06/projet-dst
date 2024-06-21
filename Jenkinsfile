@@ -244,9 +244,6 @@ metadata:
   name: prod
 EOF
 
-
-
-
     
                     helm upgrade --install infra ./my-charts \
                         --set mariadb.image.tag=${DOCKER_TAG2} \
@@ -266,6 +263,42 @@ EOF
 
                     helm upgrade --install nginx-ingress nginx-stable/nginx-ingress --set rbac.create=true --namespace nginx-ingress
                     
+                    #tls-cert
+                    kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.15.0/cert-manager.yaml
+                    
+                    kubectl apply -f - <<EOF
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: olegj@free.fr
+    privateKeySecretRef:
+      name: letsencrypt-prod
+    solvers:
+    - http01:
+        ingress:
+          class: nginx
+EOF                   
+                    
+                    kubectl apply -f - <<EOF
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tls-cert
+  namespace: prod
+spec:
+  secretName: tls-secret
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: dst-aws.xyz
+  dnsNames:
+  - dst-aws.xyz
+EOF
+
                     '''
             
                 }
