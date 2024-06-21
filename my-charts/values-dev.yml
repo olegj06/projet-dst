@@ -23,5 +23,6 @@ type: NodePort
 
 
 #wordpress
-
+hpa_minReplicas : 1
+hpa_maxReplicas: 1
 replicas: 1 

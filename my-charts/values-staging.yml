@@ -19,5 +19,6 @@ ebs_enabled: false
 type: NodePort
 
 #wordpress
+hpa_minReplicas : 2
 hpa_maxReplicas : 3
 replicas: 2

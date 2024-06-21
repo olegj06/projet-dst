@@ -32,5 +32,6 @@ type: ClusterIP
 
 
 #wordpress
-hpa_maxReplicas: 4
+hpa_minReplicas: 2
+hpa_maxReplicas: 3
 replicas: 2
