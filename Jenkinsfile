@@ -278,12 +278,12 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-prod
     solvers:
-      - http01:
-          ingress:
-            class: nginx
-EOF                   
-                    
-                    kubectl apply -f - <<EOF
+    - http01:
+        ingress:
+          class: nginx
+EOF
+
+kubectl apply -f - <<EOF
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -298,6 +298,7 @@ spec:
   dnsNames:
   - dst-aws.xyz
 EOF
+
 
                     '''
             
