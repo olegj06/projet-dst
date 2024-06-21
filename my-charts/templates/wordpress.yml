@@ -24,9 +24,7 @@ spec:
           ports:
             - containerPort: 80
             - containerPort: 443
-          volumeMounts:
-            - name: wordpress-certificates
-              mountPath: "/etc/wordpress/certs"  # Mount path for SSL certificates
+      
           env:
             - name: WORDPRESS_DB_HOST
               value: mariadb
@@ -36,7 +34,4 @@ spec:
               port: 80
             initialDelaySeconds: 10
             periodSeconds: 5
-      volumes:
-        - name: wordpress-certificates
-          secret:
-            secretName: wordpress-tls
+
