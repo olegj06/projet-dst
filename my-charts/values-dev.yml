@@ -2,6 +2,10 @@
 namespace: dev
 ingress_host: localhost
 ingressClassName: nginx.ingress.kubernetes.io
+# ingress_annotations:
+#   nginx.ingress.kubernetes.io/rewrite-target: /
+#   nginx.ingress.kubernetes.io/ssl-redirect: "false"
+#   nginx.ingress.kubernetes.io/proxy-body-size: 50m
 
 
 

@@ -1,8 +1,11 @@
 #ingres
 namespace: staging
-ingress.host: localhost
+ingress_host: localhost
 ingressClassName: nginx.ingress.kubernetes.io
-
+# ingress_annotations:
+#   nginx.ingress.kubernetes.io/rewrite-target: /
+#   nginx.ingress.kubernetes.io/ssl-redirect: "false"
+#   nginx.ingress.kubernetes.io/proxy-body-size: 100m
 
 
 #volume claim template
