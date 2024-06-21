@@ -23,7 +23,14 @@ spec:
           image: olegj06/wordpress:latest
           ports:
             - containerPort: 80
-            #- containerPort: 443
+            - containerPort: 443
+        volumeMounts:
+        - name: wordpress-certificates
+          mountPath: "/etc/wordpress/certs"  # Mount path for SSL certificates
+      volumes:
+      - name: wordpress-certificates
+        secret:
+          secretName: wordpress-tls
           env:
             - name: WORDPRESS_DB_HOST
               value: mariadb
