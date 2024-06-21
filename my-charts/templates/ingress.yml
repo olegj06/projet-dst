@@ -5,7 +5,7 @@ metadata:
   namespace: {{.Values.namespaces}}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    {{- if .Values.ingress_annotations }}
+    {{- if .Values.use_ingress_annotations }}
     {{ toYaml .Values.ingress_annotations | indent 4 }}
     {{- end }}
 spec:
