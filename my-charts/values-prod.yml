@@ -11,7 +11,7 @@ ingress_annotations:
 ingressClassName: nginx
 ingress_host: dst-aws.xyz
 ingress_tls: true
-ingress_tls_secretName: letsencrypt-prod
+ingress_tls_secretName: dst-aws.xyz-tls
   
 
 #volume claim template
