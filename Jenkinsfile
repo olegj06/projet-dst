@@ -167,7 +167,7 @@ stages {
                 script{
                     dir('terraform') {
                         sh '''
-                        terraform init -migrate-state
+                        terraform init
                         '''
                     }
                 }
