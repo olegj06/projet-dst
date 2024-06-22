@@ -25,14 +25,25 @@ terraform {
     }
   }
 
+  # backend "s3" {
+  #   bucket         = "terraform-projetr-bucket1234"
+  #   dynamodb_table = "dynamodb-state-locking"
+  #   key            = "statefile/terraform.tfstate"
+  #   region         = "eu-west-3"
+  #   encrypt        = true
+
+  # }
+
   backend "s3" {
-    bucket         = "terraform-projetr-bucket1234"
+    bucket         = "olegj-bucket-terraform-s3"
     dynamodb_table = "dynamodb-state-locking"
-    key            = "statefile/terraform.tfstate"
+    key            = "terraform.tfstate"
     region         = "eu-west-3"
     encrypt        = true
 
   }
+
+
 }
 
 variable "aws_access_key" {}
