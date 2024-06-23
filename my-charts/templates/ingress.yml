@@ -6,7 +6,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
     {{- if .Values.use_ingress_annotations }}
-    #cert-manager.io/cluster-issuer: zerossl-clusterissuer
+    cert-manager.io/cluster-issuer: zerossl-clusterissuer
     kubernetes.io/ingress.class: nginx
     #nginx.ingress.kubernetes.io/ssl-redirect: "true"
 
