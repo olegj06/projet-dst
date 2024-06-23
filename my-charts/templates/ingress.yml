@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: wordpress-ingress
-  namespace: {{.Values.namespaces}}
+  namespace: {{.Values.namespace}}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
     {{- if .Values.use_ingress_annotations }}
