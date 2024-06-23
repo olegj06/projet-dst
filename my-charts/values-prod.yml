@@ -2,7 +2,7 @@
 namespace: prod
 use_ingress_annotations: true
 ingress_annotations: 
-  cert-manager.io/cluster-issuer: letsencrypt-prod
+  #cert-manager.io/cluster-issuer: letsencrypt-prod
   kubernetes.io/ingress.class: nginx
   # nginx.ingress.kubernetes.io/rewrite-target: /
   # nginx.ingress.kubernetes.io/ssl-redirect: "true"
@@ -11,7 +11,7 @@ ingress_annotations:
 ingressClassName: nginx
 ingress_host: dst-aws.xyz
 ingress_tls: true
-ingress_tls_secretName: dst-aws-tls
+#ingress_tls_secretName: dst-aws-tls
   
 
 #volume claim template
@@ -28,9 +28,6 @@ ebs_enabled: true
 #wordpress-service
 
 type: ClusterIP
-
-
-
 
 #wordpress
 hpa_minReplicas: 2
