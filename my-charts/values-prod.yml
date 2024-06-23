@@ -10,8 +10,8 @@ ingress_annotations:
   
 ingressClassName: nginx
 ingress_host: dst-aws.xyz
-#ingress_tls: true
-#ingress_tls_secretName: dst-aws-tls
+ingress_tls: true
+ingress_tls_secretName: dst-aws-tls
   
 
 #volume claim template
